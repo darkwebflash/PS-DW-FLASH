@@ -631,16 +631,16 @@
                 </div>
                 
                 <div class="typewriter" style="animation-delay: 4s;">
-                    <span class="command">root@psdw:</span><span class="path">/system/warning$</span> access_granted = false
+                    <span class="command">root@psdw:</span><span class="path">/system/warning$</span> start purchasing flash = false
                 </div>
                 
                 <div class="typewriter" style="animation-delay: 6s;">
-                    <span class="command">root@psdw:</span><span class="path">/system/warning$</span> if user_agrees_to_terms; then access_granted = true
+                    <span class="command">root@psdw:</span><span class="path">/system/warning$</span> if user_agrees_to_terms; then start purchasing flash = true
                 </div>
                 
                 <div style="text-align: center; margin-top: 40px;">
                     <button class="hacker-btn" id="access-btn">
-                        <span class="glitch" data-text="GRANT_ACCESS">GRANT_ACCESS</span>
+                        <span class="glitch" data-text="start purchasing flash">start purchasing flash</span>
                     </button>
                 </div>
             </div>
@@ -651,12 +651,10 @@
     <div id="main-terminal">
         <div class="terminal-container">
             <!-- Terminal Navigation -->
-            <div class="terminal-nav">
-                <a href="#" class="nav-item active" data-tab="home">HOME</a>
-                <a href="#" class="nav-item" data-tab="tokens">TOKEN_TYPES</a>
-                <a href="#" class="nav-item" data-tab="purchase">PURCHASE_FLOW</a>
-                <a href="#" class="nav-item" data-tab="status">SYSTEM_STATUS</a>
-            </div>
+           <div class="terminal-nav">
+    <a href="#" class="nav-item" data-tab="tokens">FLASH_TYPES</a>
+    <a href="#" class="nav-item active" data-tab="purchase">PURCHASE_FLASH</a>
+</div>
 
             <!-- Terminal Content -->
             <div class="terminal-content">
@@ -710,7 +708,7 @@
                         <span class="command">root@psdw:</span><span class="path">/tokens$</span> ls -la
                     </div>
                     <div class="terminal-line" style="animation-delay: 0.5s;">
-                        <span class="response">DISPLAYING AVAILABLE TOKEN TYPES...</span>
+                        <span class="response">DISPLAYING AVAILABLE FLASH TYPES...</span>
                     </div>
                     
                     <div class="token-grid">
@@ -725,32 +723,32 @@
                             </div>
                             <div class="price-list">
                                 <div class="price-item">
-                                    <span class="price-amount">50 USDT.Z</span>
-                                    <span class="price-value">$9</span>
-                                </div>
-                                <div class="price-item">
                                     <span class="price-amount">100 USDT.Z</span>
-                                    <span class="price-value">$18</span>
+                                    <span class="price-value">$10</span>
                                 </div>
                                 <div class="price-item">
                                     <span class="price-amount">200 USDT.Z</span>
-                                    <span class="price-value">$36</span>
+                                    <span class="price-value">$20</span>
                                 </div>
                                 <div class="price-item">
                                     <span class="price-amount">400 USDT.Z</span>
-                                    <span class="price-value">$72</span>
+                                    <span class="price-value">$40</span>
                                 </div>
                                 <div class="price-item">
                                     <span class="price-amount">800 USDT.Z</span>
-                                    <span class="price-value">$144</span>
+                                    <span class="price-value">$80</span>
                                 </div>
                                 <div class="price-item">
                                     <span class="price-amount">1600 USDT.Z</span>
-                                    <span class="price-value">$288</span>
+                                    <span class="price-value">$160</span>
                                 </div>
                                 <div class="price-item">
-                                    <span class="price-amount">5000 USDT.Z</span>
-                                    <span class="price-value">$835</span>
+                                    <span class="price-amount">3200 USDT.Z</span>
+                                    <span class="price-value">$320</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-amount">6400 USDT.Z</span>
+                                    <span class="price-value">$640</span>
                                 </div>
                             </div>
                         </div>
@@ -766,32 +764,32 @@
                             </div>
                             <div class="price-list">
                                 <div class="price-item">
-                                    <span class="price-amount">50 USDT</span>
-                                    <span class="price-value">$9</span>
-                                </div>
-                                <div class="price-item">
                                     <span class="price-amount">100 USDT</span>
-                                    <span class="price-value">$18</span>
+                                    <span class="price-value">$10</span>
                                 </div>
                                 <div class="price-item">
                                     <span class="price-amount">200 USDT</span>
-                                    <span class="price-value">$36</span>
+                                    <span class="price-value">$20</span>
                                 </div>
                                 <div class="price-item">
                                     <span class="price-amount">400 USDT</span>
-                                    <span class="price-value">$72</span>
+                                    <span class="price-value">$40</span>
                                 </div>
                                 <div class="price-item">
                                     <span class="price-amount">800 USDT</span>
-                                    <span class="price-value">$144</span>
+                                    <span class="price-value">$80</span>
                                 </div>
                                 <div class="price-item">
                                     <span class="price-amount">1600 USDT</span>
-                                    <span class="price-value">$288</span>
+                                    <span class="price-value">$160</span>
                                 </div>
                                 <div class="price-item">
-                                    <span class="price-amount">5000 USDT</span>
-                                    <span class="price-value">$835</span>
+                                    <span class="price-amount">3200 USDT</span>
+                                    <span class="price-value">$320</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-amount">6400 USDT</span>
+                                    <span class="price-value">$640</span>
                                 </div>
                             </div>
                         </div>
@@ -807,12 +805,12 @@
                             </div>
                             <div class="price-list">
                                 <div class="price-item">
-                                    <span class="price-amount">5000 USDT</span>
-                                    <span class="price-value">$1,557</span>
+                                    <span class="price-amount">1000 USDT</span>
+                                    <span class="price-value">$150</span>
                                 </div>
                                 <div class="price-item">
-                                    <span class="price-amount">10000 USDT</span>
-                                    <span class="price-value">$3,114</span>
+                                    <span class="price-amount">5000 USDT</span>
+                                    <span class="price-value">$750</span>
                                 </div>
                             </div>
                         </div>
@@ -824,14 +822,14 @@
                     <!-- Step 1: Choose Product -->
                     <div id="step1" class="step-container active">
                         <div class="step-header">
-                            <h2 class="step-title">STEP 1: SELECT TOKEN TYPE</h2>
-                            <p class="step-desc">Choose cryptocurrency type for educational simulation</p>
+                            <h2 class="step-title">STEP 1: SELECT FLASH TYPE</h2>
+                            <p class="step-desc">Choose cryptocurrency type for Flash Purchase</p>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">TOKEN TYPE</label>
                             <select class="terminal-input" id="token-type">
-                                <option value="">-- SELECT TOKEN TYPE --</option>
+                                <option value="">-- SELECT FLASH TYPE --</option>
                                 <option value="USDT.Z (BEP20)">USDT.Z (Trust Wallet - BEP20 - Lifetime)</option>
                                 <option value="USDT (Solana)">USDT (Solana Chain - MetaMask/Coinbase - Lifetime)</option>
                                 <option value="USDT (TRC20)">USDT (TRC20 - Real-like Working - 60 Days)</option>
@@ -848,7 +846,7 @@
                     <div id="step2" class="step-container">
                         <div class="step-header">
                             <h2 class="step-title">STEP 2: USER INFORMATION</h2>
-                            <p class="step-desc">Enter details for educational exercise</p>
+                            <p class="step-desc">Enter details for Flash Purchase</p>
                         </div>
                         
                         <div class="form-row">
@@ -877,7 +875,7 @@
                     <div id="step3" class="step-container">
                         <div class="step-header">
                             <h2 class="step-title">STEP 3: SELECT PACKAGE</h2>
-                            <p class="step-desc">Choose educational package amount</p>
+                            <p class="step-desc">Choose flash package amount</p>
                         </div>
                         
                         <div class="form-group">
@@ -907,7 +905,7 @@
                         </div>
                         
                         <div class="terminal-line" style="margin-top: 20px;">
-                            <span class="response">[INFO] This is for educational simulation only</span>
+                            <span class="response">[INFO] This is for Flash Purchase only</span>
                         </div>
                         
                         <div class="step-nav">
@@ -920,7 +918,7 @@
                     <div id="step5" class="step-container">
                         <div class="step-header">
                             <h2 class="step-title">STEP 5: PAYMENT SIMULATION</h2>
-                            <p class="step-desc">Complete simulated payment for educational purposes</p>
+                            <p class="step-desc">Complete simulated payment for flash purchase</p>
                         </div>
                         
                         <div class="payment-box">
@@ -978,7 +976,7 @@
                         </div>
                         
                         <div class="terminal-line">
-                            <span class="response">[INFO] This data will be logged for educational analysis</span>
+                            <span class="response">[INFO] Pay on this and paste hash id</span>
                         </div>
                         
                         <div class="step-nav">
@@ -995,7 +993,7 @@
                             </div>
                             
                             <div class="terminal-line" style="margin: 30px 0;">
-                                <span class="response">[SUCCESS] Educational transaction simulation completed</span>
+                                <span class="response">[SUCCESS] transaction simulation completed</span>
                             </div>
                             
                             <div class="terminal-line">
@@ -1003,7 +1001,7 @@
                             </div>
                             
                             <div class="terminal-line" style="margin: 30px 0;">
-                                <span class="response">[REMINDER] This platform is for educational purposes only</span>
+                                <span class="response">[REMINDER] This platform is for Flash purchase only</span>
                             </div>
                             
                             <button class="btn" onclick="resetFlow()" style="margin-top: 40px;">
@@ -1045,7 +1043,7 @@
 
             <!-- Footer -->
             <div class="terminal-footer">
-                <div class="footer-warning">EDUCATIONAL PURPOSE ONLY • NO ILLEGAL USE • FOR STUDY PURPOSES</div>
+                <div class="footer-warning">FLASH PURCHASE ONLY •  ILLEGAL USE • FOR FLASHING PURPOSES</div>
                 <div>© 2026 PS DW FLASHER — ALL RIGHTS RESERVED | CYBER EDUCATIONAL PLATFORM</div>
             </div>
         </div>
@@ -1112,26 +1110,26 @@
         // Token packages data
         const packages = {
             'USDT.Z (BEP20)': [
-                { amount: '50 USDT.Z', price: '$9' },
-                { amount: '100 USDT.Z', price: '$18' },
-                { amount: '200 USDT.Z', price: '$36' },
-                { amount: '400 USDT.Z', price: '$72' },
-                { amount: '800 USDT.Z', price: '$144' },
-                { amount: '1600 USDT.Z', price: '$288' },
-                { amount: '5000 USDT.Z', price: '$835' }
+                { amount: '100 USDT.Z', price: '$10' },
+                { amount: '200 USDT.Z', price: '$20' },
+                { amount: '400 USDT.Z', price: '$40' },
+                { amount: '800 USDT.Z', price: '$80' },
+                { amount: '1600 USDT.Z', price: '$160' },
+                { amount: '3200 USDT.Z', price: '$320' },
+                { amount: '6400 USDT.Z', price: '$640' }
             ],
             'USDT (Solana)': [
-                { amount: '50 USDT', price: '$9' },
-                { amount: '100 USDT', price: '$18' },
-                { amount: '200 USDT', price: '$36' },
-                { amount: '400 USDT', price: '$72' },
-                { amount: '800 USDT', price: '$144' },
-                { amount: '1600 USDT', price: '$288' },
-                { amount: '5000 USDT', price: '$835' }
+                { amount: '100 USDT', price: '$10' },
+                { amount: '200 USDT', price: '$20' },
+                { amount: '400 USDT', price: '$40' },
+                { amount: '800 USDT', price: '$80' },
+                { amount: '1600 USDT', price: '$160' },
+                { amount: '3200 USDT', price: '$320' },
+                { amount: '6400 USDT', price: '$640' }
             ],
             'USDT (TRC20)': [
-                { amount: '5000 USDT', price: '$1,557' },
-                { amount: '10000 USDT', price: '$3,114' }
+                { amount: '1000 USDT', price: '$150' },
+                { amount: '5000 USDT', price: '$750' }
             ]
         };
 
@@ -1140,14 +1138,14 @@
             // Set up enter button
             document.getElementById('access-btn').addEventListener('click', function() {
                 document.getElementById('warning-modal').style.display = 'none';
-                document.getElementById('main-terminal').style.display = 'block';
+               document.getElementById('main-terminal').style.display = 'block';
+
+// Force default tab
+document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+document.getElementById('purchase-tab').style.display = 'block';
+
                 
-                // Add terminal typing effect
-                const homeTab = document.getElementById('home-tab');
-                const lines = homeTab.querySelectorAll('.terminal-line');
-                lines.forEach((line, index) => {
-                    line.style.animationDelay = `${index * 0.5}s`;
-                });
+            
             });
             
             // Set up tab navigation
@@ -1168,10 +1166,6 @@
                     });
                     document.getElementById(`${tab}-tab`).style.display = 'block';
                     
-                    // If status tab, update status
-                    if(tab === 'status') {
-                        updateSystemStatus();
-                    }
                 });
             });
             
@@ -1390,7 +1384,7 @@
             formData.append('purpose', 'Educational Simulation');
             
             // Show loading
-            showTerminalMessage('[INFO] Submitting data to our team...', 'response');
+            showTerminalMessage('[INFO] Submitting data to our Team...', 'response');
             
             // Submit to Google Sheets
             fetch(GOOGLE_SHEETS_URL, {
@@ -1402,7 +1396,7 @@
                 console.log('Google Sheets Response:', result);
                 
                 // Show success message
-                showTerminalMessage('[SUCCESS] Data send to our team successfully!', 'response');
+                showTerminalMessage('[SUCCESS]  FLASH PURCHASED SUCCESSFULLY!', 'response');
                 
                 // Update last sync time
                 updateLastSyncTime();
@@ -1416,7 +1410,7 @@
                 console.error('Error submitting to our team:', error);
                 
                 // Show error but continue (for demo purposes)
-                showTerminalMessage('[WARNING] Could not connect to Google Sheets. Saving locally for demo.', 'error');
+                showTerminalMessage('[WARNING] Could not connect', 'error');
                 
                 // Save locally as backup
                 saveDataLocally();
@@ -1472,9 +1466,6 @@
             document.getElementById('last-sync').textContent = `${dateString} ${timeString}`;
         }
 
-        // Update system status
-        function updateSystemStatus() {
-            updateLastSyncTime();
             
             // Check if we have local data
             const localData = localStorage.getItem('psdw_simulations');
@@ -1489,7 +1480,7 @@
                 
                 document.getElementById('status-tab').appendChild(countDiv);
             }
-        }
+        
 
         // Reset the flow
         function resetFlow() {
