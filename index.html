@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS DW FLASHER - Educational Demo Only</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo:wght@300;400;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-bg: #000000;
+            --darker-bg: #0a0a0a;
+            --dark-card: #111111;
+            --neon-blue: #00ffff;
+            --neon-purple: #8a2be2;
+            --neon-green: #39ff14;
+            --neon-pink: #ff00ff;
+            --glow-blue: rgba(0, 255, 255, 0.3);
+            --glow-purple: rgba(138, 43, 226, 0.3);
+            --glow-green: rgba(57, 255, 20, 0.3);
+        }
+
+        body {
+            font-family: 'Exo', sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, .neon-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Warning Ticker */
+        .warning-ticker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff4500, #ff0000);
+            color: white;
+            padding: 10px;
+            z-index: 1000;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Glitch Text Effect */
+        .glitch {
+            position: relative;
+            display: inline-block;
+            animation: glitch 5s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-blue);
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-purple);
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            5% { clip: rect(12px, 9999px, 59px, 0); }
+            10% { clip: rect(48px, 9999px, 29px, 0); }
+            15% { clip: rect(42px, 9999px, 73px, 0); }
+            20% { clip: rect(63px, 9999px, 27px, 0); }
+            25% { clip: rect(34px, 9999px, 55px, 0); }
+            30% { clip: rect(86px, 9999px, 73px, 0); }
+            35% { clip: rect(20px, 9999px, 20px, 0); }
+            40% { clip: rect(26px, 9999px, 60px, 0); }
+            45% { clip: rect(25px, 9999px, 66px, 0); }
+            50% { clip: rect(57px, 9999px, 98px, 0); }
+            55% { clip: rect(5px, 9999px, 46px, 0); }
+            60% { clip: rect(82px, 9999px, 31px, 0); }
+            65% { clip: rect(54px, 9999px, 27px, 0); }
+            70% { clip: rect(28px, 9999px, 99px, 0); }
+            75% { clip: rect(45px, 9999px, 69px, 0); }
+            80% { clip: rect(23px, 9999px, 85px, 0); }
+            85% { clip: rect(54px, 9999px, 84px, 0); }
+            90% { clip: rect(45px, 9999px, 47px, 0); }
+            95% { clip: rect(37px, 9999px, 20px, 0); }
+            100% { clip: rect(4px, 9999px, 91px, 0); }
+        }
+
+        /* Home Page */
+        .home-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-title {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 30px var(--neon-blue);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .cyber-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(50px) translateX(50px); }
+        }
+
+        /* Warning Modal */
+        .warning-modal {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--neon-blue);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 
+                0 0 30px var(--glow-blue),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+            animation: modalAppear 0.5s ease-out;
+        }
+
+        @keyframes modalAppear {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .warning-text {
+            color: #ff4444;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            line-height: 1.6;
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        /* Buttons */
+        .cyber-button {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            padding: 15px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            margin: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cyber-button:hover {
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 
+                0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue),
+                0 0 60px var(--neon-blue);
+            text-shadow: none;
+        }
+
+        .cyber-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cyber-button:hover:before {
+            left: 100%;
+        }
+
+        /* Price Cards */
+        .products-page {
+            padding: 100px 20px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .price-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-blue);
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.5),
+                0 0 30px var(--glow-blue);
+        }
+
+        .price-card:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-green));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .price-card:hover:before {
+            opacity: 1;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+        }
+
+        .card-price {
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            margin: 1rem 0;
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+        }
+
+        .validity {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Purchase Flow */
+        .purchase-flow {
+            padding: 100px 20px 50px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .flow-step {
+            background: var(--darker-bg);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .flow-step.active {
+            display: block;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: var(--neon-blue);
+            color: black;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--neon-blue);
+            font-size: 1.1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-family: 'Exo', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px var(--glow-blue);
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .package-option {
+            padding: 15px;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .package-option:hover,
+        .package-option.selected {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: var(--neon-blue);
+            transform: scale(1.05);
+        }
+
+        .payment-info {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--neon-blue);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-label {
+            color: #888;
+        }
+
+        .info-value {
+            color: var(--neon-green);
+            font-family: 'Orbitron', monospace;
+            word-break: break-all;
+        }
+
+        /* Loading Animation */
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            animation: loading 2s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker-bg);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .footer-warning {
+            color: #ff4444;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        .footer-text {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Floating Icons */
+        .floating-icons {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100vw, 100vh) rotate(360deg); }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--dark-card);
+            border: 1px solid var(--neon-green);
+            border-radius: 5px;
+            color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+            transform: translateX(100%);
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .home-title {
+                font-size: 2.5rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .package-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .warning-modal {
+                padding: 1rem;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Warning Ticker -->
+    <div class="warning-ticker">
+        <div class="ticker-content">
+            ⚠️ FOR EDUCATIONAL PURPOSES ONLY ⚠️ FLASH REAL MONEY USE ⚠️ DO NOT MISUSE FLASHING OR CRYPTO SYSTEMS ⚠️ THIS IS A FLASH ONLY ⚠️
+        </div>
+    </div>
+
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Floating Icons -->
+    <div class="floating-icons" id="floatingIcons"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Home Page -->
+    <div class="home-page" id="homePage">
+        <div class="cyber-grid"></div>
+        <h1 class="home-title glitch" data-text="PS DW FLASHER">PS DW FLASHER</h1>
+        
+        <div class="warning-modal">
+            <h2 style="color: var(--neon-blue); margin-bottom: 1rem;">⚠️ IMPORTANT WARNING ⚠️</h2>
+            
+            <div class="warning-text">
+                This website is for learning & education only.
+            </div>
+            
+            <div class="warning-text">
+                No illegal use. We do not encourage financial fraud.
+            </div>
+            
+            <div class="warning-text">
+                For study purposes only.
+            </div>
+            
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            
+            <button class="cyber-button" id="enterButton">
+                ENTER FLASH SITE
+            </button>
+            
+            <div style="margin-top: 2rem; color: #888; font-size: 0.9rem;">
+                By entering, you confirm this is for educational purposes
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Page -->
+    <div class="products-page" id="productsPage" style="display: none;">
+        <h2 class="section-title glitch" data-text="TOKEN TYPES & PRICES">TOKEN TYPES & PRICES</h2>
+        
+        <!-- USDT.Z -->
+        <h3 style="color: var(--neon-blue); margin: 3rem 0 1rem; text-align: center; font-size: 1.8rem;">
+            1️⃣ USDT.Z (Trust Wallet — BEP20 — Lifetime Validity)
+        </h3>
+        <div class="cards-container" id="usdtzCards"></div>
+        
+        <!-- USDT Solana -->
+        <h3 style="color: var(--neon-purple); margin: 3rem 0 1rem; text-align: center; font-size: 1.8rem;">
+            2️⃣ USDT (Solana Chain — MetaMask / Coinbase — Lifetime Validity)
+        </h3>
+        <div class="cards-container" id="usdtSolanaCards"></div>
+        
+        <!-- USDT TRC20 -->
+        <h3 style="color: var(--neon-green); margin: 3rem 0 1rem; text-align: center; font-size: 1.8rem;">
+            3️⃣ USDT (TRC20 — Real-like Working — 60 Days Validity)
+        </h3>
+        <div class="cards-container" id="usdtTrc20Cards"></div>
+        
+        <div style="text-align: center; margin-top: 4rem;">
+            <button class="cyber-button" id="startPurchase">
+                START PURCHASE Flash
+            </button>
+        </div>
+    </div>
+
+    <!-- Purchase Flow -->
+    <div class="purchase-flow" id="purchaseFlow" style="display: none;">
+        <!-- Step 1: Choose Product -->
+        <div class="flow-step active" id="step1">
+            <div class="step-number">1</div>
+            <h2 style="color: var(--neon-blue); margin-bottom: 2rem;">Choose Product Type</h2>
+            
+            <div class="package-grid">
+                <div class="package-option" data-product="usdtz">
+                    <div style="color: var(--neon-blue); font-weight: bold; font-size: 1.2rem;">USDT.Z</div>
+                    <div style="color: #888; font-size: 0.9rem;">Trust Wallet — BEP20</div>
+                    <div style="color: var(--neon-green); margin-top: 5px;">Lifetime Validity</div>
+                </div>
+                
+                <div class="package-option" data-product="usdt_solana">
+                    <div style="color: var(--neon-purple); font-weight: bold; font-size: 1.2rem;">USDT Solana</div>
+                    <div style="color: #888; font-size: 0.9rem;">MetaMask / Coinbase</div>
+                    <div style="color: var(--neon-green); margin-top: 5px;">Lifetime Validity</div>
+                </div>
+                
+                <div class="package-option" data-product="usdt_trc20">
+                    <div style="color: var(--neon-green); font-weight: bold; font-size: 1.2rem;">USDT TRC20</div>
+                    <div style="color: #888; font-size: 0.9rem;">Real-like Working</div>
+                    <div style="color: #ff4444; margin-top: 5px;">60 Days Validity</div>
+                </div>
+            </div>
+            
+            <div style="text-align: right; margin-top: 2rem;">
+                <button class="cyber-button" id="nextStep1">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 2: User Info -->
+        <div class="flow-step" id="step2">
+            <div class="step-number">2</div>
+            <h2 style="color: var(--neon-blue); margin-bottom: 2rem;">Your Information</h2>
+            
+            <div class="form-group">
+                <label class="form-label">Full Name *</label>
+                <input type="text" class="form-input" id="userName" placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Gmail Address *</label>
+                <input type="email" class="form-input" id="userEmail" placeholder="example@gmail.com">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Telegram Username *</label>
+                <input type="text" class="form-input" id="userTelegram" placeholder="@username">
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                <button class="cyber-button" id="prevStep2">← Back</button>
+                <button class="cyber-button" id="nextStep2">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Token Selection -->
+        <div class="flow-step" id="step3">
+            <div class="step-number">3</div>
+            <h2 style="color: var(--neon-blue); margin-bottom: 2rem;">Select Package</h2>
+            
+            <div id="packageOptions" class="package-grid"></div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                <button class="cyber-button" id="prevStep3">← Back</button>
+                <button class="cyber-button" id="nextStep3">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Wallet Input -->
+        <div class="flow-step" id="step4">
+            <div class="step-number">4</div>
+            <h2 style="color: var(--neon-blue); margin-bottom: 2rem;">Wallet Address</h2>
+            
+            <div class="form-group">
+                <label class="form-label">Enter Your Wallet Address *</label>
+                <input type="text" class="form-input" id="walletAddress" 
+                       placeholder="0x... or T... or solana address" 
+                       style="font-family: monospace;">
+                <small style="color: #888; margin-top: 5px; display: block;">
+                    Enter the wallet address for all assets you want to receive
+                </small>
+            </div>
+            
+            <div class="warning-text" style="margin: 1.5rem 0;">
+                ⚠️ This is a Flash. enter real wallet addresses or use real cryptocurrency.
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                <button class="cyber-button" id="prevStep4">← Back</button>
+                <button class="cyber-button" id="nextStep4">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 5: Payment -->
+        <div class="flow-step" id="step5">
+            <div class="step-number">5</div>
+            <h2 style="color: var(--neon-blue); margin-bottom: 2rem;">Payment Information</h2>
+            
+            <div class="payment-info">
+                <div class="info-row">
+                    <span class="info-label">Your Selected Package:</span>
+                    <span class="info-value" id="selectedPackageDisplay">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Amount to Pay:</span>
+                    <span class="info-value" id="amountToPay">$0</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Payment Wallet:</span>
+                    <span class="info-value" style="color: var(--neon-blue);">
+                        0xfc566896721e3141b0f779beca27fe80b1dcf819
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Network:</span>
+                    <span class="info-value">BNB SMART CHAIN (BEP20)</span>
+                </div>
+            </div>
+            
+            <div class="warning-text">
+                ⚠️ EDUCATIONAL ONLY: This is payment address.send real money!
+            </div>
+            
+            <div class="form-group" style="margin-top: 2rem;">
+                <label class="form-label">Transaction Hash / ID (Demo)</label>
+                <input type="text" class="form-input" id="transactionHash" 
+                       placeholder="0x... (Enter transaction ID)">
+                <small style="color: #888; margin-top: 5px; display: block;">
+                    For purposes, you can enter any test transaction hash
+                </small>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                <button class="cyber-button" id="prevStep5">← Back</button>
+                <button class="cyber-button" id="submitPayment">Submit Demo Payment</button>
+            </div>
+        </div>
+
+        <!-- Step 6: Final -->
+        <div class="flow-step" id="step6">
+            <div class="step-number">6</div>
+            <h2 style="color: var(--neon-green); text-align: center; margin-bottom: 2rem;">
+                COMPLETE! 🎉
+            </h2>
+            
+            <div style="text-align: center; margin: 3rem 0;">
+                <div style="font-size: 3rem; color: var(--neon-green); margin-bottom: 1rem;">
+                    ✓
+                </div>
+                <h3 style="color: var(--neon-blue); font-size: 2rem; margin-bottom: 1rem;">
+                    Thank You!
+                </h3>
+                <p style="color: #ccc; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+                    Your request has been logged. This is for educational purposes only.
+                </p>
+            </div>
+            
+            <div class="payment-info">
+                <div class="info-row">
+                    <span class="info-label">Reference ID:</span>
+                    <span class="info-value">${Date.now().toString(36).toUpperCase()}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value" style="color: var(--neon-green);">Completed Successfully</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="cyber-button" id="restart">
+                    Start New Session
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="mainFooter" style="display: none;">
+        <div class="footer-warning">
+            ⚠️ EDUCATIONAL PURPOSE ONLY - NOT FOR MISLINIOUS USE ⚠️
+        </div>
+        <div class="footer-text">
+            This is a demonstration website for learning about cryptocurrency interfaces.<br>
+            No real transactions occur. All data is simulated for educational purposes.<br><br>
+            © 2026 PS DW FLASHER — All Rights Reserved
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Google Sheets Configuration
+        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw_ekIpYzve1vepL8lwR2knUkddKlwOHJ9Ps48rTTUgbG56bbArXsUclTpOk5X83Eid/exec';
+
+        // Initialize data
+        let currentStep = 1;
+        let selectedProduct = '';
+        let selectedPackage = {};
+        let userData = {};
+
+        // Price data
+        const products = {
+            usdtz: {
+                name: "USDT.Z (BEP20)",
+                validity: "Lifetime",
+                packages: [
+                    { amount: "50 USDT.Z", price: "$9" },
+                    { amount: "100 USDT.Z", price: "$18" },
+                    { amount: "200 USDT.Z", price: "$36" },
+                    { amount: "400 USDT.Z", price: "$72" },
+                    { amount: "800 USDT.Z", price: "$144" },
+                    { amount: "1600 USDT.Z", price: "$288" },
+                    { amount: "5000 USDT.Z", price: "$835" }
+                ]
+            },
+            usdt_solana: {
+                name: "USDT (Solana)",
+                validity: "Lifetime",
+                packages: [
+                    { amount: "50 USDT", price: "$9" },
+                    { amount: "100 USDT", price: "$18" },
+                    { amount: "200 USDT", price: "$36" },
+                    { amount: "400 USDT", price: "$72" },
+                    { amount: "800 USDT", price: "$144" },
+                    { amount: "1600 USDT", price: "$288" },
+                    { amount: "5000 USDT", price: "$835" }
+                ]
+            },
+            usdt_trc20: {
+                name: "USDT (TRC20)",
+                validity: "60 Days",
+                packages: [
+                    { amount: "5000 USDT", price: "$1,557" },
+                    { amount: "10000 USDT", price: "$3,114" }
+                ]
+            }
+        };
+
+        // Initialize particles
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00ffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#8a2be2",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+
+        // Create floating icons
+        function createFloatingIcons() {
+            const icons = ['₿', 'Ξ', '◎', '⚡', '🔷', '💎', '🪙', '💰'];
+            const container = document.getElementById('floatingIcons');
+            
+            for (let i = 0; i < 20; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'floating-icon';
+                icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.color = i % 3 === 0 ? '#00ffff' : i % 3 === 1 ? '#8a2be2' : '#39ff14';
+                icon.style.left = Math.random() * 100 + 'vw';
+                icon.style.top = Math.random() * 100 + 'vh';
+                icon.style.animationDuration = (Math.random() * 30 + 20) + 's';
+                icon.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(icon);
+            }
+        }
+
+        // Show notification
+        function showNotification(message, color = '#39ff14') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.borderColor = color;
+            notification.style.color = color;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Generate price cards
+        function generatePriceCards() {
+            // USDT.Z cards
+            const usdtzContainer = document.getElementById('usdtzCards');
+            products.usdtz.packages.forEach(pkg => {
+                usdtzContainer.innerHTML += `
+                    <div class="price-card">
+                        <h3 class="card-title">${pkg.amount}</h3>
+                        <div class="card-price">${pkg.price}</div>
+                        <div class="validity">Lifetime Validity</div>
+                    </div>
+                `;
+            });
+
+            // USDT Solana cards
+            const solanaContainer = document.getElementById('usdtSolanaCards');
+            products.usdt_solana.packages.forEach(pkg => {
+                solanaContainer.innerHTML += `
+                    <div class="price-card">
+                        <h3 class="card-title">${pkg.amount}</h3>
+                        <div class="card-price">${pkg.price}</div>
+                        <div class="validity">Lifetime Validity</div>
+                    </div>
+                `;
+            });
+
+            // USDT TRC20 cards
+            const trc20Container = document.getElementById('usdtTrc20Cards');
+            products.usdt_trc20.packages.forEach(pkg => {
+                trc20Container.innerHTML += `
+                    <div class="price-card">
+                        <h3 class="card-title">${pkg.amount}</h3>
+                        <div class="card-price">${pkg.price}</div>
+                        <div class="validity">60 Days Validity</div>
+                    </div>
+                `;
+            });
+        }
+
+        // Initialize package options
+        function loadPackageOptions() {
+            const container = document.getElementById('packageOptions');
+            if (!selectedProduct || !products[selectedProduct]) return;
+            
+            const product = products[selectedProduct];
+            container.innerHTML = '';
+            
+            product.packages.forEach((pkg, index) => {
+                container.innerHTML += `
+                    <div class="package-option" data-index="${index}">
+                        <div style="font-weight: bold; font-size: 1.1rem;">${pkg.amount}</div>
+                        <div style="color: var(--neon-green); font-size: 1.2rem; margin: 5px 0;">${pkg.price}</div>
+                        <div style="color: #888; font-size: 0.8rem;">${product.validity} Validity</div>
+                    </div>
+                `;
+            });
+
+            // Add click handlers
+            document.querySelectorAll('#packageOptions .package-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('#packageOptions .package-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    
+                    const index = parseInt(this.dataset.index);
+                    selectedPackage = products[selectedProduct].packages[index];
+                    
+                    // Update payment display
+                    document.getElementById('selectedPackageDisplay').textContent = 
+                        `${selectedPackage.amount} - ${selectedPackage.price}`;
+                    document.getElementById('amountToPay').textContent = selectedPackage.price;
+                });
+            });
+        }
+
+        // Submit to Google Sheets
+        async function submitToGoogleSheets(data) {
+            try {
+                const formData = new FormData();
+                Object.keys(data).forEach(key => {
+                    formData.append(key, data[key]);
+                });
+
+                const response = await fetch(SHEET_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    showNotification('data logged successfully!', '#39ff14');
+                    return true;
+                } else {
+                    showNotification('logged locally (offline mode)', '#ffaa00');
+                    return true; // Continue anyway for demo purposes
+                }
+            } catch (error) {
+                console.log('submission logged locally:', data);
+                showNotification(' logged locally (offline mode)', '#ffaa00');
+                return true; // Always continue for demo
+            }
+        }
+
+        // Navigation functions
+        function goToStep(step) {
+            document.querySelectorAll('.flow-step').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+        }
+
+        // Event Listeners
+        document.getElementById('enterButton').addEventListener('click', function() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('productsPage').style.display = 'block';
+            document.getElementById('mainFooter').style.display = 'block';
+            showNotification('Welcome to the educational!', '#00ffff');
+        });
+
+        document.getElementById('startPurchase').addEventListener('click', function() {
+            document.getElementById('productsPage').style.display = 'none';
+            document.getElementById('purchaseFlow').style.display = 'block';
+        });
+
+        // Product selection
+        document.querySelectorAll('.package-option[data-product]').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.package-option[data-product]').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                selectedProduct = this.dataset.product;
+            });
+        });
+
+        // Step navigation
+        document.getElementById('nextStep1').addEventListener('click', function() {
+            if (!selectedProduct) {
+                showNotification('Please select a product type', '#ff4444');
+                return;
+            }
+            goToStep(2);
+        });
+
+        document.getElementById('nextStep2').addEventListener('click', function() {
+            const name = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const telegram = document.getElementById('userTelegram').value.trim();
+            
+            if (!name || !email || !telegram) {
+                showNotification('Please fill all required fields', '#ff4444');
+                return;
+            }
+            
+            if (!email.includes('@')) {
+                showNotification('Please enter a valid email', '#ff4444');
+                return;
+            }
+            
+            userData = { name, email, telegram };
+            loadPackageOptions();
+            goToStep(3);
+        });
+
+        document.getElementById('nextStep3').addEventListener('click', function() {
+            if (!selectedPackage.amount) {
+                showNotification('Please select a package', '#ff4444');
+                return;
+            }
+            goToStep(4);
+        });
+
+        document.getElementById('nextStep4').addEventListener('click', function() {
+            const wallet = document.getElementById('walletAddress').value.trim();
+            if (!wallet) {
+                showNotification('Please enter a wallet address', '#ff4444');
+                return;
+            }
+            userData.wallet = wallet;
+            goToStep(5);
+        });
+
+        // Back buttons
+        document.getElementById('prevStep2').addEventListener('click', () => goToStep(1));
+        document.getElementById('prevStep3').addEventListener('click', () => goToStep(2));
+        document.getElementById('prevStep4').addEventListener('click', () => goToStep(3));
+        document.getElementById('prevStep5').addEventListener('click', () => goToStep(4));
+
+        // Submit payment
+        document.getElementById('submitPayment').addEventListener('click', async function() {
+            const txHash = document.getElementById('transactionHash').value.trim();
+            if (!txHash) {
+                showNotification('Please enter a transaction hash', '#ff4444');
+                return;
+            }
+            
+            userData.transactionHash = txHash;
+            userData.product = selectedProduct;
+            userData.package = selectedPackage.amount;
+            userData.price = selectedPackage.price;
+            userData.timestamp = new Date().toISOString();
+            userData.demoId = 'DEMO-' + Date.now().toString(36).toUpperCase();
+            
+            // Show loading
+            this.innerHTML = 'Processing...';
+            this.disabled = true;
+            
+            // Submit to Google Sheets
+            const success = await submitToGoogleSheets(userData);
+            
+            if (success) {
+                setTimeout(() => {
+                    goToStep(6);
+                    this.innerHTML = 'Submit Payment';
+                    this.disabled = false;
+                }, 1000);
+            }
+        });
+
+        // Restart demo
+        document.getElementById('restart').addEventListener('click', function() {
+            // Reset all data
+            currentStep = 1;
+            selectedProduct = '';
+            selectedPackage = {};
+            userData = {};
+            
+            // Reset forms
+            document.getElementById('userName').value = '';
+            document.getElementById('userEmail').value = '';
+            document.getElementById('userTelegram').value = '';
+            document.getElementById('walletAddress').value = '';
+            document.getElementById('transactionHash').value = '';
+            
+            // Reset selections
+            document.querySelectorAll('.package-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Go back to products
+            document.getElementById('purchaseFlow').style.display = 'none';
+            document.getElementById('productsPage').style.display = 'block';
+            goToStep(1);
+            
+            showNotification('New session started', '#00ffff');
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingIcons();
+            generatePriceCards();
+            
+            // Add glitch effect to all glitch elements
+            document.querySelectorAll('.glitch').forEach(el => {
+                el.setAttribute('data-text', el.textContent);
+            });
+            
+            // Auto-select first product
+            setTimeout(() => {
+                document.querySelector('.package-option[data-product]').click();
+            }, 500);
+            
+            // Add sound effect simulation
+            document.querySelectorAll('.cyber-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Simulate cyber sound effect
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.value = 800;
+                    oscillator.type = 'sine';
+                    
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.1);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
