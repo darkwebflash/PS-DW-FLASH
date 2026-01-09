@@ -585,6 +585,21 @@
                 padding: 12px 10px;
             }
         }
+        .qr-image {
+    width: 160px;
+    height: 160px;
+    border: 2px solid var(--hacker-green);
+    padding: 6px;
+    background-color: #000;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.qr-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.7);
+}
+
     </style>
 </head>
 <body>
@@ -933,6 +948,17 @@
                                 <span class="payment-label">SYSTEM WALLET (TRC20):</span>
                                 <span class="payment-value">TWUf9ss9S4FTY72qdJzLL4fR1SB6ac2Mkm</span>
                             </div>
+                              <!-- BEP20 QR -->
+        <div style="text-align: center;">
+            <div class="payment-label">BEP20 QR</div>
+            <img src="https://ik.imagekit.io/hcxz6yj3k/WhatsApp%20Image%202026-01-10%20at%2003.15.18.jpeg" alt="BEP20 QR Code" class="qr-image">
+        </div>
+
+        <!-- TRC20 QR -->
+        <div style="text-align: center;">
+            <div class="payment-label">TRC20 QR</div>
+            <img src="https://ik.imagekit.io/hcxz6yj3k/WhatsApp%20Image%202026-01-10%20at%2003.16.06.jpeg" alt="TRC20 QR Code" class="qr-image">
+        </div>
                         
                         <div class="form-group">
                             <label class="form-label">TRANSACTION HASH / ID</label>
@@ -1498,4 +1524,5 @@
     </script>
 </body>
 </html>
+
 
